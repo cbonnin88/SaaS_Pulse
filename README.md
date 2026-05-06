@@ -23,6 +23,11 @@ Instead of relying on basic vanity metrics, this tool calculates high-level fina
 * **Visualizations:** Plotly Express
 * **Machine Learning:** Scikit-Learn
 
+## 📊 Dashboard Navigation - [SaaS Pulse](https://www.loom.com/share/ce34e4464e16452a8d2ad1362d0787e5?t=1)
+- **NRR Heatmap:** Tracks how cohorts expand or contract over time. Values > 100% indicate successful upsells/upgrades outpacing churn.
+- **Margin Adjusted Payback:** A dual-line chart plotting raw CLV and Margin-Adjusted CLV against a static Average CAC line to find the exact payback month.
+- **Churn Risk Radar:** Adjust the ML sensitivity slider (e.g., 75% risk) to instantly filter and export a list of users highly likely to cancel their subscriptions.
+
 ## 📂 Project Structure
 ```text
 ├── app.py                  # Main Streamlit application and UI logic
@@ -31,3 +36,21 @@ Instead of relying on basic vanity metrics, this tool calculates high-level fina
 ├── subscriptions.csv       # Generated transaction ledger
 ├── churn_data.csv          # Generated historical churn labels for ML training
 └── README.md               # Project documentation
+```
+
+
+
+## Running in Google Colab (or Juptyer Notebooks)
+If you are developing or running this project within a **Google Colab environment**, use pyngrok to expose the Streamlit port:
+```text
+import os
+from pyngrok import ngrok
+
+# Authenticate and open tunnel
+!ngrok config add-authtoken YOUR_NGROK_TOKEN
+
+os.system("streamlit run app.py --server.port 8501 &"
+
+public_url = ngrok.connect(8501)
+print(f"App Live At: {public_url.public_url}")
+
